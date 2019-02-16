@@ -109,25 +109,29 @@ public class AddRecipeActivity extends AppCompatActivity {
             {
                 RecipeModel recipe = new RecipeModel(mealType,Integer.parseInt(mealServing),recipeName,Double.parseDouble(cookingTime),Ingredients,Instruction,"ID");
                 // Add a new document with a generated ID
+                
                 db = FirebaseFirestore.getInstance();
                 db.collection("Recipe")
                         .add(recipe)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
-                                uploadImage(documentReference.getId());
+
 
                                 db = FirebaseFirestore.getInstance();
+
                                 DocumentReference recipeToUpdate = db.collection("Recipe").document("" + documentReference.getId());
+                                uploadImage(documentReference.getId());
                                 recipeToUpdate.update("recipeID", documentReference.getId())
                                         .addOnSuccessListener(new OnSuccessListener< Void >() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
                                                 //SUCCESSFULLY UPDATED!!!
+
                                             }
                                         });
 
-                                showAlert("SUCCESSFULLY ADDED RECIPE","SUCCESS");
+
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -177,7 +181,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         if(filePath != null)
         {
             final ProgressDialog progressDialog = new ProgressDialog(AddRecipeActivity.this);
-            progressDialog.setTitle("Uploading...");
+            progressDialog.setTitle("HUWAT...");
             // progressDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
             progressDialog.show();
             progressDialog.setCancelable(false);
@@ -188,7 +192,7 @@ public class AddRecipeActivity extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                             progressDialog.dismiss();
-                            showAlert("Successfully Updated!","Success");
+                            showAlert("Successfully UPLOADED HAP!","Success");
 
                         }
                     })
@@ -196,7 +200,7 @@ public class AddRecipeActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            showAlert("An Error Occured","ERROR");
+                            showAlert("SAYOP","ERROR");
 
                         }
                     })

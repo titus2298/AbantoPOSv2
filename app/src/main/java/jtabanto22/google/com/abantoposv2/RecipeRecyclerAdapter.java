@@ -52,7 +52,7 @@ public class RecipeRecyclerAdapter extends RecyclerView.Adapter<RecipeRecyclerAd
         });
 
 
-        holder.rowRecipe_mealTypeTxtView.setText(recipes.get(position).getMealType());
+        holder.rowRecipe_mealTypeTxtView.setText(recipes.get(position).getRecipeName());
         holder.rowRecipe_NumServingsTxtView.setText(recipes.get(position).getMealServing() + " Servings");
     }
 

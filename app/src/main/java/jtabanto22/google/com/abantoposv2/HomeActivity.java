@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -107,6 +108,17 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
 
             overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+        }
+        else if(id == R.id.logOut_Button )
+        {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(HomeActivity.this,Login.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+            Toast.makeText(getApplication(), "SUCESSFULLY LOGGED OUT!", Toast.LENGTH_SHORT).show();
+
+
         }
 
         return super.onOptionsItemSelected(item);
